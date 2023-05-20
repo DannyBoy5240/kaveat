@@ -1,0 +1,33 @@
+ion-header::after {
+    display: none;
+}
+
+ion-img::part(image) {
+    width: 100px; /* or whatever value */
+}
+
+ion-item{
+    --background: light;
+}
+
+ion-col {
+    text-align: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+ion-content {
+    --background: none;
+    background-image: url('../../assets/Landingfinal.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+terms {
+    padding-left: 10%;
+    padding-right: 10%;
+}

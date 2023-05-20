@@ -1,0 +1,214 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button style="height: auto;" class="no-ripple" (click)="redirectLanding()">
+        <ion-img src="../../assets/icon/kaveat.png" alt="Kaveat"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" *ngIf="currentUser">
+  <!-- <div class="card-container"> -->
+    <ion-grid [fixed]="true">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="8">
+          <h1>Welcome, {{ currentUser.firstName }}!</h1>
+          <h2>Let's get to know you a bit better</h2>
+            <ion-radio-group [(ngModel)]="userType" value="talent">
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">I am a</ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-radio slot="start" value="talent"></ion-radio>
+                    <ion-label>Creator</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-radio slot="start" value="agent"></ion-radio>
+                    <ion-label>Agent</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          
+          <form *ngIf="userType === 'talent'" [formGroup]="userDetailsFormCreator" (ngSubmit)="signUp()">
+            <ion-item lines="full">
+              <ion-label position="floating">
+                Occupation <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="occupation" type="text" placeholder="Example: influencer" required></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.occupation.touched && userDetailsFormCreator.controls.occupation.errors?.required">
+              Occupation is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.occupation.errors?.minlength">
+              Occupation should be min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating">City <p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="city" type="text" placeholder="City, State/Province/Region"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.city.touched && userDetailsFormCreator.controls.city.errors?.required">
+              City is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.city.errors?.minlength">
+              City should be min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating">Country <p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="country" type="text" placeholder="USA"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.country.touched && userDetailsFormCreator.controls.country.errors?.required">
+              Country is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.country.errors?.minlength">
+              Country should be min 2 chars long.
+            </span>
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Your Primary Social Platform <p style="color: red; display: inline;">*</p></ion-label>
+                <ion-select formControlName="socialPlatform" interface="popover" placeholder="Select Your Primary Social Platform" (ionChange)="handleChange($event)">
+                  <ion-select-option value="instagram">Instagram</ion-select-option>
+                  <ion-select-option value="tiktok">TikTok</ion-select-option>
+                  <ion-select-option value="youtube">Youtube</ion-select-option>
+                  <ion-select-option value="facebook">Facebook</ion-select-option>
+                  <ion-select-option value="twitter">Twitter</ion-select-option>
+                  <ion-select-option value="pinterest">Pinterest</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            <ion-item lines="full">
+              <ion-label position="floating">Social Media Handle <p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="socialHandle" type="text" placeholder="@myhandle"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.socialHandle.touched && userDetailsFormCreator.controls.socialHandle.errors?.required">
+              Social media handle is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.socialHandle.errors?.minlength">
+              Social media handle min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                How many influencer/modeling contracts have you signed? <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="signedContracts" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.signedContracts.touched && userDetailsFormCreator.controls.signedContracts.errors?.required">
+              A number is required.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                How many contracts do you receive per month? <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="receivedContracts" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormCreator.controls.receivedContracts.touched && userDetailsFormCreator.controls.receivedContracts.errors?.required">
+              A number is required.
+            </span>
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating" class="ion-text-wrap">
+                  Have you ever negotiated your contract(s) previously and do you plan to negotiate this one?
+                  <p style="color: red; display: inline;">*</p>
+                </ion-label>
+                <ion-select class="ion-text-wrap" formControlName="negotiationStatus" interface="popover" placeholder="Select" (ionChange)="handleChange($event)">
+                  <ion-select-option value="NEVER_HAS_BUT_WILL">No, but plan to</ion-select-option>
+                  <ion-select-option value="NEVER_HAS_AND_WONT">No, and don't plan to</ion-select-option>
+                  <ion-select-option value="HAS_BUT_WONT">Yes, but don't plan to</ion-select-option>
+                  <ion-select-option value="HAS_AND_WILL">Yes, and plan to</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            <ion-row *ngIf="errorNote" class="ion-padding">
+              <ion-note color="danger">{{errorNote}}</ion-note>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" shape="round" color="primary" expand="block">Submit</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+          <form *ngIf="userType === 'agent'" [formGroup]="userDetailsFormAgent" (ngSubmit)="signUp()">
+            <ion-item lines="full">
+              <ion-label position="floating">What city and/or state(s) do you and your agency operate in?<p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="city" type="text" placeholder="City, State/Province/Region"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.city.touched && userDetailsFormAgent.controls.city.errors?.required">
+              City is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.city.errors?.minlength">
+              City should be min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating">What country(s) do you and your agency operate in?<p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="country" type="text" placeholder="USA"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.country.touched && userDetailsFormAgent.controls.country.errors?.required">
+              Country is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.country.errors?.minlength">
+              Country should be min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                How many talent do you represent? <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="numTalentRepresented" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.numTalentRepresented.touched && userDetailsFormAgent.controls.numTalentRepresented.errors?.required">
+              A number is required.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating">Where is your talent based?<p style="color: red; display: inline;">*</p></ion-label>
+              <ion-input formControlName="talentBase" type="text" placeholder="NYC"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.talentBase.touched && userDetailsFormAgent.controls.talentBase.errors?.required">
+              This is required.
+            </span>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.country.errors?.minlength">
+              This should be min 2 chars long.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                How many contracts do you receive per week? <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="receivedContracts" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.receivedContracts.touched && userDetailsFormAgent.controls.receivedContracts.errors?.required">
+              A number is required.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                How many people do you have negotiating contracts? <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="numPeopleNegotiating" type="number"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.numPeopleNegotiating.touched && userDetailsFormAgent.controls.numPeopleNegotiating.errors?.required">
+              A number is required.
+            </span>
+            <ion-item lines="full">
+              <ion-label position="floating" class="ion-text-wrap">
+                Other SaaS Tools Used <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="otherToolsUsed" type="text"></ion-input>
+            </ion-item>
+            <span class="error ion-padding" *ngIf="userDetailsFormAgent.controls.otherToolsUsed.touched && userDetailsFormAgent.controls.otherToolsUsed.errors?.required">
+              This field is required.
+            </span>
+            <ion-row *ngIf="errorNote" class="ion-padding">
+              <ion-note color="danger">{{errorNote}}</ion-note>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" shape="round" color="primary" expand="block">Submit</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <!-- </div> -->
+</ion-content>

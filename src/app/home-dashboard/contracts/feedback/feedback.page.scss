@@ -1,0 +1,17 @@
+@import "~@typeform/embed/build/css/widget.css";
+
+#form {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+ion-img::part(image) {
+  width: 200px; /* or whatever value */
+  display: block;
+  margin: 0 auto;
+}
+
+ion-button {
+  display: flex;
+}

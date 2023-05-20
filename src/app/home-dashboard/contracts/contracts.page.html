@@ -1,0 +1,90 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>contracts</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <h1 class="ion-padding">My Contracts</h1>
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-note *ngIf="myContracts?.length === 0" class="ion-padding">You don't have any contracts uploaded yet!</ion-note>
+  <ion-list *ngIf="!myContracts">
+    <ion-list-header>
+      <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-button *ngIf="numUnpaidContracts > 0" shape="round" color="danger" href="https://buy.stripe.com/test_4gwbJGfwubKveys3cf?prefilled_email=jenny%40example.com&client_reference_id=id_1234">
+    Pay {{numUnpaidContracts}} contracts
+  </ion-button> -->
+  <!-- <ion-card *ngFor="let contract of myContracts; let i = index" button="true"> -->
+  <ion-card *ngFor="let contract of results; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{contract.name}}</ion-card-title>
+      <ion-card-subtitle>Uploaded {{contract.upload_time}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-button *ngIf="!contract.paid && contract.isRelevant" shape="round" color="danger" (click)="generatePaymentLink(contract)">
+        Pay
+      </ion-button>
+      <!-- <ion-chip *ngIf="!contract.paid" slot="start" color="danger">Unpaid</ion-chip> -->
+      <ng-container *ngIf="contract.reviewed && contract.isRelevant; then readyStatus; else progressStatus"></ng-container>
+      <ng-template #readyStatus>
+        <ion-chip slot="end" color="success">Ready</ion-chip>
+      </ng-template>
+      <ng-template #progressStatus>
+        <ng-container *ngIf="contract.paid && contract.isRelevant; else irrelevant">
+          <ion-chip id="hover-trigger-progress" slot="end" color="warning">In Progress</ion-chip>
+          <ion-popover trigger="hover-trigger-progress" triggerAction="hover">
+            <ng-template>
+              <ion-content class="ion-padding">This contract is in review and will be ready within 24 hours of upload</ion-content>
+            </ng-template>
+          </ion-popover>
+        </ng-container>
+      </ng-template>
+      <ng-template #irrelevant>
+        <ng-container *ngIf="!contract.isRelevant">
+          <ion-chip id="hover-trigger-invalid" slot="end" color="danger">Unserviceable</ion-chip>
+          <ion-popover trigger="hover-trigger-invalid" triggerAction="hover">
+            <ng-template>
+              <ion-content class="ion-padding">We are currently only servicing agency and brand agreements. Unfortunately, we've detected this contract is not serviceable at this moment.</ion-content>
+            </ng-template>
+          </ion-popover>
+        </ng-container>
+      </ng-template>
+      <div id="caction">
+        <ion-button shape="round" fill="clear" (click)="getOriginal(contract, false)">
+          View Original
+        </ion-button>
+        <ion-button shape="round" [disabled]="contract.reviewed" (click)="getAnalysis(contract, true)">
+          View Analysis
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-footer class="ion-no-border">
+    <ion-text id="additionalqs">
+      <h6>Have additional questions about your contract?</h6>
+      <p>Reach out to us at contact@kaveatapp.com.</p>
+    </ion-text>
+  </ion-footer>
+
+</ion-content>
+

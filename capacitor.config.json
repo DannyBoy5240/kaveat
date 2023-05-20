@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "K-Test",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

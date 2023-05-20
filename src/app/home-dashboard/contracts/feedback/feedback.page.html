@@ -1,0 +1,16 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <h1 class="ion-padding">Let us know how that went...</h1>
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col>
+        <div id="form"></div>
+        <ion-button *ngIf="!platform.is('desktop')" (click)="openSurvey()" name="account" fill="outline" shape="round">
+          Feedback Survey
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-img src="../../../../assets/feedback-celebrate.png" alt="Woooo"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

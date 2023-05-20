@@ -1,0 +1,70 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>upload</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <h1 class="ion-padding">Upload</h1>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>We are currently only servicing <ion-text color="danger">agency</ion-text> and <ion-text color="danger">brand agreements</ion-text>. <br><br>Files must be in PDF, Doc, or Docx format</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content *ngIf="this.selectedFiles">
+      <div *ngIf="message.length">
+        <ion-item *ngFor="let msg of message; let i = index">
+          {{msg}}
+        </ion-item>
+      </div>
+      Selected Files:
+      <ion-list lines="none" *ngFor="let f of selectedFilesList; let i = index">
+        <ion-item button class="fileItem" detail="false">
+          {{f.name}}
+          <ion-button fill="clear" slot="end" color="light" (click)="removeFile(i)">
+            <ion-icon slot="icon-only" name="close-outline" color="dark"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-card-content *ngIf="this.file">
+      Selected File:
+      <ion-item button class="fileItem" detail="false">
+        {{file.name}}
+      </ion-item>
+    </ion-card-content>
+    <ng-container *ngIf="currentUser && currentUser.mode && currentUser.mode === 'subscription' && currentUser.planStatus === 'active'; then multiUpload; else singleUpload"></ng-container>
+      <ng-template #multiUpload>
+        <input #fileUpload name="fileUpload" style="display: none;" type="file" multiple (change)="selectFiles($event)" accept=".pdf,.doc,.docx">
+        <ion-button fill="clear" (click)="fileUpload.click()">
+          <ion-icon slot="start" name="add"></ion-icon>
+          Select File(s)
+        </ion-button>
+      </ng-template>
+      <ng-template #singleUpload>
+        <input #fileUpload name="fileUpload" style="display: none;" type="file" multiple (change)="loadFileFromDevice($event)" accept=".pdf,.doc,.docx">
+        <ion-button fill="clear" (click)="fileUpload.click()">
+          <ion-icon slot="start" name="add"></ion-icon>
+          Select File
+        </ion-button>
+      </ng-template>
+  </ion-card>
+  <div class="ion-padding">
+    <ion-item *ngIf="platform.is('desktop')" fill="outline" class="customCode">
+      <ion-label position="floating">
+        Referral Code
+      </ion-label>
+      <ion-input [(ngModel)]="referralCode" (ngModelChange)="referralCode = referralCode.toUpperCase()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!platform.is('desktop')" fill="outline">
+      <ion-label position="floating">
+        Referral Code
+      </ion-label>
+      <ion-input [(ngModel)]="referralCode" (ngModelChange)="referralCode = referralCode.toUpperCase()"></ion-input>
+    </ion-item>
+  </div>
+  <ion-button color="primary" shape="round" expand="full" (click)="submitContracts()">
+    Upload
+  </ion-button>
+
+</ion-content>

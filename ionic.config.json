@@ -1,0 +1,8 @@
+{
+  "name": "K-Test",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "42467fc8"
+}

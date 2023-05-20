@@ -1,0 +1,31 @@
+export const environment = {
+  production: true,
+  firebase: {
+    apiKey: 'AIzaSyBLslqMLor-dlzT_hs_XSCyMQUvgO8Ecns',
+    authDomain: 'kaveatapp-da986.firebaseapp.com',
+    projectId: 'kaveatapp-da986',
+    storageBucket: 'kaveatapp-da986.appspot.com',
+    messagingSenderId: '939714117156',
+    appId: '1:939714117156:web:6dbb6bab76f90b7cab22b1',
+    measurementId: 'G-TB3RF78W28'
+    },
+  baseUrl: 'https://us-central1-kaveatapp-da986.cloudfunctions.net',
+  apiUrl: 'https://backend-bd75a7apxq-uc.a.run.app',
+  contractMetaEndpoint: 'get-contract-meta',
+  contractFileEndpoint: 'get-contract-file',
+  // contractAnalysisDataEndpoint: 'get-contract-file',
+  // updateResultEndpoint: 'update-result-file',
+  updateContractMetadataEndpoint: 'update-contract-metadata',
+  grabContractsEndpoint: 'grab-contracts',
+  saveEndpoint: 'save-v2',
+  paymentSessionEndpoint: 'session',
+  paymentCustomerPortalEndpoint: 'create-customer-portal-session',
+  newUserEndpoint: 'new-user',
+  updateUserEndpoint: 'update-user',
+  getUserEndpoint: 'get-user',
+  subscriptionEndpoint: 'subscription',
+  stripePK: 'pk_live_51M2gIHFZThvYfqo6LTWZsrSZ2jAUYqhg7wr3WfqnTB8G1orNouBjn3l4ISJ1Dp043uQuAwoyW4WhJzZCJ3ZFgBN600UcfPJ3C3',
+  stripePriceTableId: 'prctbl_1MWiRVFZThvYfqo69kFc4sbL',
+  basePaymentLink: 'https://buy.stripe.com/14k6pw4Wr4Bu9vq000',
+  validCodes: 'get-valid-codes'
+};

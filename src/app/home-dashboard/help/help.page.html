@@ -1,0 +1,21 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-text>
+    <h1 class="ion-padding">Frequently Asked Questions</h1>
+  </ion-text>
+
+  <ion-accordion-group expand="inset" *ngFor="let q of questions; let i = index">
+    <ion-accordion>
+      <ion-item slot="header" color="light">
+        <ion-label>{{ q.q }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{ q.a }}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-text>
+    <h6 class="ion-padding">Don't see your question here?</h6>
+    <ion-note class="ion-padding">Reach out with any additional questions via email at contact@kaveatapp.com.</ion-note>
+  </ion-text>
+</ion-content>

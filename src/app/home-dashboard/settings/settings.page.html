@@ -1,0 +1,78 @@
+<ion-content [fullscreen]="true" class="ion-padding" id="settings">
+  <ion-text>
+    <h1>My Profile</h1>
+  </ion-text>
+  <ion-content class="ion-padding" *ngIf="currentUser">
+    <form [formGroup]="userForm" (ngSubmit)="submitForm('bottom')" novalidate>
+      <ion-item lines="full">
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input id="firstName" formControlName="firstName" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="userForm.controls.firstName.errors?.required">
+        Name is required.
+      </span>
+      <span class="error ion-padding" *ngIf="userForm.controls.firstName.errors?.minlength">
+        Name should be min 2 chars long.
+      </span>
+      <ion-item lines="full">
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input formControlName="lastName" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="userForm.controls.lastName.errors?.required">
+        Name is required.
+      </span>
+      <span class="error ion-padding" *ngIf="userForm.controls.lastName.errors?.minlength">
+        Name should be min 2 chars long.
+      </span>
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div *ngIf="currentUser.userType !== 'agent'">
+        <ion-item lines="full">
+          <ion-label position="floating">Occupation</ion-label>
+          <ion-input formControlName="occupation" type="text"></ion-input>
+        </ion-item>
+        <span class="error ion-padding" *ngIf="userForm.controls.occupation.errors?.required">
+          Occupation is required.
+        </span>
+        <span class="error ion-padding" *ngIf="userForm.controls.occupation.errors?.minlength">
+          Occupation should be min 2 chars long.
+        </span>
+      </div>
+      <ion-item lines="full">
+        <ion-label position="floating">City</ion-label>
+        <ion-input formControlName="city" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="userForm.controls.city.errors?.required">
+        City is required.
+      </span>
+      <span class="error ion-padding" *ngIf="userForm.controls.city.errors?.minlength">
+        City should be min 2 chars long.
+      </span>
+      <ion-item lines="full">
+        <ion-label position="floating">Country</ion-label>
+        <ion-input formControlName="country" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="userForm.controls.country.errors?.required">
+        Country is required.
+      </span>
+      <span class="error ion-padding" *ngIf="userForm.controls.country.errors?.minlength">
+        Country should be min 2 chars long.
+      </span>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="block">Update</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <div class="ion-padding">
+      <h3>Payment Plan</h3>
+      <ion-note *ngIf="currentUser.userType === 'agent'">Enterprise - Subscription</ion-note><br>
+      <ion-note *ngIf="currentUser.userType !== 'agent' && (!currentUser.mode || currentUser.mode ==='payment')">Pay-Per-Use</ion-note>
+      <br>
+      <!-- <ion-note *ngIf="currentUser.referralCode !== ''">{{currentUser.referralCode}}</ion-note> -->
+      <ion-button *ngIf="currentUser.stripeId" type="submit" expand="block" color="secondary" (click)="changePlan()">Manage Subscription</ion-button>
+    </div>
+  </ion-content>
+</ion-content>

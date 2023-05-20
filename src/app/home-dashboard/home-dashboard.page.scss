@@ -1,0 +1,16 @@
+.selected {
+    --color: #856C8C;
+}
+
+ion-img::part(image) {
+    width: 100px;
+}
+  
+.disclaimer {
+    font-size: 10px;
+}
+
+.titleicon {
+    display: flex;
+    align-content: center;
+}

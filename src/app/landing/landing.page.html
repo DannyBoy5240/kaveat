@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-img class="ion-padding" src="../../assets/icon/kaveat.png" alt="Kaveat"></ion-img>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="card-container">
+      <ion-grid [fixed]="true">
+        <ion-row class="ion-align-items-center justify-content-center">
+          <ion-col>
+            <h1 style="text-align: left;">Get the most out of your creative career.</h1>
+            <h4 style="text-align: left;">Built for creatives, by creatives. We help you GET the most out of your jobs so you can focus on DOING what you love.</h4>
+          </ion-col>
+          <ion-col>
+            <ion-button [routerLink]="['/registration']" color="medium" fill="outline" shape="round" size="large">Register</ion-button><br />
+            <ion-button [routerLink]="['/login']" color="primary" shape="round" size="large">Sign In</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </div>
+</ion-content>

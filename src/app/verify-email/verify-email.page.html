@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-button style="height: auto;" class="no-ripple" (click)="redirectLanding()">
+        <ion-img src="../../assets/icon/kaveat.png" alt="Kaveat"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="card-container">
+        <ion-grid [fixed]="true">
+          <ion-row color="light" class="ion-justify-content-center">
+            <ion-col size="6">
+              <h1>Verify Your Email</h1>
+              <ion-item lines="full">
+                <p *ngIf="authService.userData as user">
+                  Thank you for registering. We have sent a confirmation email to {{user.email}}. 
+                  <br>Please check your email and click on the link to verify your email address.
+                  <br>Note: Double check your spam folder if you don't immediately see the email.
+                </p>
+              </ion-item>
+              <a [routerLink]="['/login']" class="small-text">Go to Login</a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </div>
+</ion-content>

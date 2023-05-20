@@ -1,0 +1,18 @@
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+#additionalqs {
+  text-align: center;
+}
+
+#caction {
+  text-align: right;
+}
+
+ion-skeleton-text {
+  --border-radius: 9999px;
+  --background: rgba(188, 0, 255, 0.065);
+  --background-rgb: 188, 0, 255;
+}

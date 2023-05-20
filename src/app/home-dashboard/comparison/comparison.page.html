@@ -1,0 +1,31 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Main</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <!-- <ion-text>
+    <h1 *ngIf="currentUser">Welcome, {{ currentUser.firstName }}!</h1>
+  </ion-text> -->
+  <div id="container">
+    <ion-text>
+      <h1 *ngIf="this.currentUser">Document Comparison</h1>
+    </ion-text>
+    <div style="display: flex; justify-content: center; margin-top: 10%;">
+      <div>
+        <ion-button [state]="{ userMetadata: this.currentUser }" name="account-upload" shape="round" size="large">Original File</ion-button><br>
+      </div>
+      <div>
+        <ion-button [state]="{ userMetadata: this.currentUser }" name="account-contracts" fill="outline" shape="round" size="large">Newer File</ion-button>
+      </div>
+    </div>
+    <div style="margin-top: 10%;">
+      <ion-button (click)="compareBtnClicked($event)" [state]="{ userMetadata: this.currentUser }" name="account-contracts" fill="outline" shape="round" size="large">Compare</ion-button>
+    </div>
+    <!-- <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
+  </div>
+</ion-content>

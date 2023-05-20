@@ -1,0 +1,188 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex;">
+      <div style="display: flex; width: 50%;"></div>
+      <div style="display:flex; justify-content: space-between; width: 45%; align-items: center;">
+        <div style="text-align: -webkit-center;">
+          <p>Explanation</p>
+          <div (click)="explanationCheckBoxClicked($event)" [hidden]="explanationCheckBox"><ion-img class="checkbox" src="../../../../assets/blank-checkbox.svg" alt="explanation-checkbox"></ion-img></div>
+          <div (click)="explanationCheckBoxClicked($event)" [hidden]="!explanationCheckBox"><ion-img class="checkbox" src="../../../../assets/explanation-checkbox.svg" alt="explanation-checkbox"></ion-img></div>
+        </div>
+        <div style="text-align: -webkit-center;">
+          <p>Comments</p>
+          <div (click)="commentCheckBoxClicked($event)" [hidden]="commentCheckBox" ><ion-img class="checkbox" src="../../../../assets/blank-checkbox.svg" alt="comment-checkbox"></ion-img></div>
+          <div (click)="commentCheckBoxClicked($event)" [hidden]="!commentCheckBox"><ion-img class="checkbox" src="../../../../assets/comment-checkbox.svg" alt="comment-checkbox"></ion-img></div>
+        </div>
+        <div style="text-align: -webkit-center;">
+          <p>Edits</p>
+          <div  (click)="editCheckBoxClicked($event)" [hidden]="editCheckBox"><ion-img class="checkbox" src="../../../../assets/blank-checkbox.svg" alt="edit-checkbox"></ion-img></div>
+          <div  (click)="editCheckBoxClicked($event)" [hidden]="!editCheckBox"><ion-img class="checkbox" src="../../../../assets/edit-checkbox.svg" alt="edit-checkbox"></ion-img></div>
+        </div>
+        <div class="detailBtn" (click)="detailBtnClicked($event)"></div>
+        <div>
+          <button class="share">Share</button>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+  <ion-progress-bar [value]="progress"></ion-progress-bar>
+</ion-header>
+
+<ion-content [scrollEvents]="true"  (ionScroll)="logScrolling($event)" class="ion-padding">
+  <div #dataContainer (click)="afterr($event)">
+    <!--html transfer to front-end [start]-->
+    <div class="analysisContainer" *ngIf="contractData && analysisFileType === 'csv'">
+      <!-- EDITS!! -->
+      <div class="doc">
+        <!--Load Contract Content-->
+        <div class="content">
+          <!--Set clauses and associated explanations-->
+          <div class="clause" *ngFor="let clause of contractData.clauses; let i = index" contenteditable="false" tabindex="-1" [attr.data-value]="contractData.explanations[i]">
+            {{clause}}
+          </div>
+        </div>
+      </div>
+      <div class="insight">
+        <!-- Explanation -->
+        <div class="rightBarContent" [hidden]="!explanationCheckBox">
+          <div class="header" id="header" name="explanation">
+            <div class="title">
+              &nbsp;&nbsp;<ion-img class="circle" src="../../../../assets/explanation-circle.svg" alt="explanation-circle"></ion-img>&nbsp;&nbsp;
+              <h1>Terms of Agreement</h1>
+              <h2> - Explanation</h2>
+            </div>
+            <div id="message" class="message" [hidden]="explanationDisplayed">
+            </div>
+            <div class="arrowUp" id="arrowUp" (click)="arrow($event)" [hidden]="explanationDisplayed">
+              <ion-img class="arrow" src="../../../../assets/arrow-up.svg" alt="arrow-up"></ion-img>
+            </div>
+            <div class="arrowDown" id="arrowDown" (click)="arrow($event)" [hidden]="!explanationDisplayed">
+              <ion-img class="arrow" src="../../../../assets/arrow-down.svg" alt="arrow-down"></ion-img>
+            </div>
+          </div>  
+        </div>
+        <!-- Comment -->
+        <div class="rightBarContent" [hidden]="!commentCheckBox">
+          <div class="header" id="commentHeader" name="comment">
+            <div class="title">
+              &nbsp;&nbsp;<ion-img class="circle" src="../../../../assets/comment-circle.svg" alt="comment-circle"></ion-img>&nbsp;&nbsp;
+              <h1>Comment</h1>
+            </div>
+            <div id="message" class="message" [hidden]="commentDisplayed">
+              <div>
+                <textarea placeholder="Input your text..."></textarea>
+              </div>
+              <div>
+                <button style="border-radius: 10px; background: rgba(0, 0, 0, 0.12);">Reply</button>
+              </div>
+            </div>
+            <div class="arrowUp" id="arrowUp" (click)="arrow($event)" [hidden]="commentDisplayed">
+              <ion-img id="comment" class="arrow" src="../../../../assets/arrow-up.svg" alt="arrow-up"></ion-img>
+            </div>
+            <div class="arrowDown" id="arrowDown" (click)="arrow($event)" [hidden]="!commentDisplayed">
+              <ion-img id="comment" class="arrow" src="../../../../assets/arrow-down.svg" alt="arrow-down"></ion-img>
+            </div>
+          </div>  
+        </div>
+        <!-- Addiction -->
+        <div class="rightBarContent" [hidden]="!editCheckBox">
+          <div class="header" id="addictionHeader" name="edit">
+            <div class="title" style="justify-content: space-between;">
+              <div style="display: flex; align-items: baseline;">
+                &nbsp;&nbsp;<ion-img class="circle" src="../../../../assets/addiction-circle.svg" alt="explanation-circle"></ion-img>&nbsp;&nbsp;
+                <h1>Addiction</h1>
+              </div>
+              <div style="display: flex;" [hidden]="addictionDisplayed">
+                <div>
+                  <ion-img class="discline" src="../../../../assets/discline.svg"></ion-img>
+                </div>
+                <div>
+                  <ion-img class="accept" src="../../../../assets/accept.svg"></ion-img>
+                </div>
+              </div>
+            </div>
+            <div id="message" class="message" [hidden]="addictionDisplayed">
+              <div style="display: flex; justify-content: space-between;">
+                <div style="width: 40%;">
+                  At elementum eget enim natoque ac elit sed ultricies
+                </div>
+                <div style="width: 20%;">
+                  <ion-img id="addiction" class="arrowRight" src="../../../../assets/arrow-right.svg" alt="arrow-down"></ion-img>
+                </div>
+                <div style="width: 40%;">
+                  At ONLY elementum eget enim natoque ac elit sed ultricies
+                </div>
+              </div>
+              <p style="font-size: 12px; font-weight: bold;">Learn more</p>
+            </div> 
+            <div [attr.name]="addiction" class="arrowUp" id="arrowUp" (click)="arrow($event)" [hidden]="addictionDisplayed">
+              <ion-img id="addiction" class="arrow" src="../../../../assets/arrow-up.svg" alt="arrow-up"></ion-img>
+            </div>
+            <div [attr.name]="addiction" class="arrowDown" id="arrowDown" (click)="arrow($event)" [hidden]="!addictionDisplayed">
+              <ion-img id="addiction" class="arrow" src="../../../../assets/arrow-down.svg" alt="arrow-down"></ion-img>
+            </div>
+          </div>  
+        </div>
+          <!-- Deletion -->
+        <div class="rightBarContent" [hidden]="!editCheckBox">
+          <div class="header" id="deletionHeader" name="edit">
+            <div class="title" style="justify-content: space-between;">
+              <div style="display: flex; align-items: baseline;">
+                &nbsp;&nbsp;<ion-img class="circle" src="../../../../assets/addiction-circle.svg" alt="explanation-circle"></ion-img>&nbsp;&nbsp;
+                <h1>Deletion</h1>
+              </div>
+              <div style="display: flex;" [hidden]="deletionDisplayed">
+                <div>
+                  <ion-img class="discline" src="../../../../assets/discline.svg"></ion-img>
+                </div>
+                <div>
+                  <ion-img class="accept" src="../../../../assets/accept.svg"></ion-img>
+                </div>
+              </div>
+            </div>
+            <div id="message" class="message" [hidden]="deletionDisplayed">
+              <div style="display: flex;">
+                <div style="border-radius: 10px; background: #F86464; padding: 5px;
+                text-decoration: line-through;">
+                  fringilla et
+                </div>
+              </div>
+              <p style="font-size: 12px; font-weight: bold;">Learn more</p>
+            </div>
+            <div [attr.name]="deletion" class="arrowUp" id="arrowUp" (click)="arrow($event)" [hidden]="deletionDisplayed">
+              <ion-img id="deletion" class="arrow" src="../../../../assets/arrow-up.svg" alt="arrow-up"></ion-img>
+            </div>
+            <div [attr.name]="deletion" class="arrowDown" id="arrowDown" (click)="arrow($event)" [hidden]="!deletionDisplayed">
+              <ion-img id="deletion" class="arrow" src="../../../../assets/arrow-down.svg" alt="arrow-down"></ion-img>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <div id="detailModel" class="detailModel" (click)="detailModelClicked($event)" [hidden]="!detailBtn">
+        <div class="detail">
+          <div>CheckList</div>  
+          <div *ngFor="let item of contractData.overview; let i = index">
+            <hr class="solid">
+            <div style="align-items: center; flex-direction: row; display: flex;">
+              <div [attr.name]="'mycheckbox' + i" value="yes" (click)="click($event)" [hidden]="!setCheckState('mycheckbox' + i)"><ion-img class="checkbox" src="../../../../assets/blank-checkbox.svg" alt="checklist-checkbox"></ion-img></div>
+              <div [attr.name]="'mycheckbox' + i" value="yes" (click)="click($event)" [hidden]="setCheckState('mycheckbox' + i)"><ion-img class="checkbox" src="../../../../assets/checklist-checkbox.svg" alt="checklist-checkbox"></ion-img></div>
+              &nbsp;&nbsp;&nbsp;<p>{{item}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Progress Bar-->
+      <div class="progressBarModel">
+        <div class="progressBar">
+          <div class="progress" id="progress">
+            <h6 style="position: absolute; margin-top: 3px; right: 0px; transform: translateX(50%);">
+              {{progress}}%
+            </h6>
+          </div>
+        </div>
+        <button class="finishedBtn" (click)="getFeedback()">Finished</button>
+      </div>
+    </div>
+    <!--html transfer to front-end [end]-->
+  </div>
+</ion-content>

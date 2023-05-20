@@ -1,0 +1,28 @@
+ion-img::part(image) {
+    width: 100px; /* or whatever value */
+}
+
+ion-title {
+    max-width: min-content;
+}
+
+ion-item{
+    --background: light;
+}
+
+ion-col {
+    text-align: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+ion-content {
+    --background: none;
+    background-image: url('../../assets/Landingfinal.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

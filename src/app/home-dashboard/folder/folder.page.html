@@ -1,0 +1,22 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Main</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <!-- <ion-text>
+    <h1 *ngIf="currentUser">Welcome, {{ currentUser.firstName }}!</h1>
+  </ion-text> -->
+  <div id="container">
+    <ion-text>
+      <h1 *ngIf="this.currentUser">Welcome, {{ currentUser.firstName }}!</h1>
+    </ion-text>
+    <ion-button [routerLink]="['/home-dashboard/upload']" [state]="{ userMetadata: this.currentUser }" name="account-upload" shape="round" size="large">Upload A Contract</ion-button><br>
+    <ion-button [routerLink]="['/home-dashboard/contracts']" [state]="{ userMetadata: this.currentUser }" name="account-contracts" fill="outline" shape="round" size="large">View My Contracts</ion-button>
+    <!-- <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <!-- <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="name" placeholder="Enter your full name"></ion-input>
+  </ion-item>
+  <ngx-stripe-card
+    [options]="cardOptions"
+    [elementsOptions]="elementsOptions"
+  ></ngx-stripe-card>
+  <ion-button type="submit" (click)="createToken()">
+    CREATE TOKEN
+  </ion-button> -->
+  <!-- <ion-button type="submit" (click)="checkout()">Checkout</ion-button> -->
+  <!-- <form ngNoForm [action]="url" method="POST" target="_blank">
+    <ion-button type="submit" id="checkout-button">Checkout<ion-button>
+  </form> -->
+  <!-- <stripe-pricing-table pricing-table-id="prctbl_1MMIRJFZThvYfqo63iva1Ssr"
+  publishable-key="pk_test_51M2gIHFZThvYfqo6wejHDOhd11PSzJ7B83isr86jHFYTYY9uR0EQHwCKRqD9V3MfPN5voWS4p6ZlvGTdiJxs3dut00WeOmnrnb">
+  </stripe-pricing-table> -->
+  <!-- <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons> -->
+  <h1 class="ion-padding">Choose your payment plan</h1>
+  <ion-text id="note" class="ion-padding">
+    <p>Please use the same email associated with your account when checking out.</p>
+  </ion-text>
+  <div *ngIf="currentUser">
+    <stripe-pricing-table id="price-id"
+    [attr.pricing-table-id]="priceTableId"
+    [attr.publishable-key]="publishKey"
+    [attr.customer-email]="currentUser.email"
+    [attr.client-reference-id]="contractId">
+    </stripe-pricing-table>
+    <!-- <ion-button id="butt" (click)="loadPricingDetails()">Load Pricing Table Details: Email</ion-button> -->
+  </div>
+  <!-- <ion-button type="submit" href="https://buy.stripe.com/test_bIY8xugAybKv4XScMO">Checkout - Subscription (enterprise)</ion-button>
+  <ion-button type="submit" href="https://buy.stripe.com/test_5kA3da3NMbKvfCw4gh">Checkout - Subscription (basic)</ion-button> -->
+  <!-- <ion-button type="submit" value="ppu" (click)="checkout()">Checkout - PPU</ion-button> -->
+
+</ion-content>

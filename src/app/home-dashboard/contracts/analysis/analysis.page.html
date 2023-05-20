@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-padding" *ngIf="contractMetadata">{{ contractMetadata.name }}</ion-title>
+    <!-- {{progressValue}} -->
+  </ion-toolbar>
+  <ion-progress-bar [value]="progress"></ion-progress-bar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)" class="ion-padding">
+  <ion-button id="hover-trigger" fill="clear" class="ion-text-end">
+    How to view
+    <ion-icon slot="end" name="help-circle-outline"></ion-icon>
+  </ion-button>
+  <ion-popover trigger="hover-trigger" triggerAction="hover">
+    <ng-template>
+      <ion-content class="ion-padding">
+        Click on a clause and the explanation and insight will populate on the right.
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+  <div #dataContainer (click)="afterr($event)">
+    <!--html transfer to front-end [start]-->
+    <div class="analysisContainer" *ngIf="contractData && analysisFileType === 'csv'">
+      <!-- EDITS!! -->
+      
+      <div class="doc">
+        <h1>Contract</h1>
+            <!--Load Contract Content-->
+            <div class="content">
+              <!--Set clauses and associated explanations-->
+              <div class="clause" *ngFor="let clause of contractData.clauses; let i = index" contenteditable="false" tabindex="-1" [attr.data-value]="contractData.explanations[i]">
+                {{clause}}
+              </div>
+            </div>
+            <!--Load Contract Overview/Checklist-->
+            <div class="overview">
+              <h2>Overview</h2>
+              <div *ngFor="let item of contractData.overview; let i = index">
+                <input type="checkbox" class="save-cb-state" [attr.name]="'mycheckbox' + i" value="yes" (click)="click($event)" [checked]="setCheckState('mycheckbox' + i)"> {{item}}
+                <!-- <label for="'mycheckbox' + i" [innerHTML]="item"> {{item}} </label> -->
+                <!-- <ion-checkbox class="save-cb-state" [attr.name]="'mycheckbox' + i" value="yes" (click)="click($event)" [checked]="setCheckState('mycheckbox' + i)"> {{item}} </ion-checkbox> -->
+                <br>
+              </div>
+              <!-- <ion-checkbox 
+                style="display: block;" 
+                labelPlacement="end"
+                *ngFor="let item of contractData.overview; let i = index" 
+                class="save-cb-state" 
+                [attr.name]="'mycheckbox' + i" 
+                value="yes" 
+                (ionChange)="click('mycheckbox' + i, $event)"
+                [checked]="contractMetadata.todosDone.has('mycheckbox' + i)">
+                test
+              </ion-checkbox> -->
+            </div>
+      </div>
+      <div class="insight">
+        <h2>Insight</h2>
+        <div class="insight-box" id="message">
+          <div class="text-popup" style="display:none">
+              <div class="text-popup-content"> 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--html transfer to front-end [end]-->
+  </div>
+  <!-- <div *ngIf="analysisHtml" [innerHTML]="sanitizer.bypassSecurityTrustHtml(analysisHtml)"></div>  -->
+</ion-content>
+<ion-footer collapse="fade">
+  <ion-button expand="block" (click)="getFeedback()">Finished Reviewing</ion-button>
+</ion-footer>

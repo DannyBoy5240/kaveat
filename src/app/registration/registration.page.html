@@ -1,0 +1,111 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button style="height: auto;" class="no-ripple" (click)="redirectLanding()">
+        <ion-img src="../../assets/icon/kaveat.png" alt="Kaveat"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- <div class="card-container"> -->
+    <ion-grid [fixed]="true">
+      <ion-row color="light" class="justify-content-center">
+        <ion-col size-md="3" size="1"></ion-col>
+        <ion-col size-md="6">
+          <h1>Register</h1>
+          <form [formGroup]="userForm" (ngSubmit)="signUp()">
+            <ion-item lines="full">
+              <ion-label position="floating">
+                First name
+                <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="firstName" type="text" required></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">
+                Last name
+                <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="lastName" type="text" required></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">
+                Email
+                <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="email" type="email" required></ion-input>
+              <!-- <ion-note slot="helper">Enter a valid email</ion-note>
+              <ion-note slot="error">Invalid email</ion-note> -->
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">
+                Password
+                <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="userPassword" type="password" required></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">
+                Confirm Password
+                <p style="color: red; display: inline;">*</p>
+              </ion-label>
+              <ion-input formControlName="confirmPassword" type="password" required></ion-input>
+            </ion-item>
+            <div *ngIf="userForm.controls.confirmPassword.errors?.mustMatch && userForm.controls.confirmPassword.dirty">
+              <ion-note>Passwords must match!</ion-note>
+            </div>
+            <ion-row *ngIf="errorNote" class="ion-padding">
+              <ion-note color="danger">{{errorNote}}</ion-note>
+            </ion-row>
+            <ion-item class="terms" lines="none">
+              <ion-checkbox slot="start" (ionChange)="isCheckedTerms($event)"></ion-checkbox>
+              <ion-label class="ion-text-wrap">
+                <p>
+                  By checking this box, I agree to Kaveat's 
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.kaveatapp.com/terms-of-service" class="small-text">
+                    <u>Terms of Service</u>
+                  </a> and
+                  <a  target="_blank" rel="noopener noreferrer" href="https://www.kaveatapp.com/privacy-policy" class="small-text">
+                    <u>Privacy Policy</u>
+                  </a>.
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item class="terms" lines="none">
+              <ion-checkbox slot="start" (ionChange)="isCheckedPaymentTerms($event)"></ion-checkbox>
+              <ion-label class="ion-text-wrap">
+                <p>
+                  By checking this box, I agree to Kaveat's 
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.kaveatapp.com/subscription-terms" class="small-text">
+                    <u>Subscription Terms</u>
+                  </a>.
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-row>
+              <ion-col>
+                <ion-button name="signup" [disabled]="!consentTerms || !consentPaymentTerms" type="submit" shape="round" color="primary" expand="block">Sign Up</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+          <ion-row class="ion-padding">
+            <a [routerLink]="['/login']" class="small-text">Already have an account?</a>
+          </ion-row>
+          <!-- <ion-row class="ion-padding">
+            <ion-note>
+              By signing up, I agree to Kaveat's 
+              <a href="https://www.kaveatapp.com/privacy-policy" class="small-text">
+                <u>Privacy Policy</u>
+              </a> and 
+              <a href="https://www.kaveatapp.com/terms-of-service" class="small-text">
+                <u>Terms of Service</u>
+              </a>.
+            </ion-note>
+          </ion-row> -->
+        </ion-col>
+        <ion-col size-md="3" size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+  <!-- </div> -->
+</ion-content>

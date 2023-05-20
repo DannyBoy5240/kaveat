@@ -1,0 +1,368 @@
+// :host > tag overrides all styling from innerHTML (pre-generated html)
+:host > * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host > svg {
+    max-width: 100%;
+    max-height: 100%;
+    padding-left: 0px;
+    padding-top: 20px;
+    /* left: 0; */
+}
+
+:host > div {
+  // displays line breaks
+  white-space: pre-wrap;
+}
+
+:host > header{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    background-color: white;
+    height: 70px;
+    text-align: center;
+    padding-left: 2%;
+    margin-bottom: auto;
+    padding-bottom: 10px;
+}
+  
+
+/* Global styles */
+:host > body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.analysisContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px;
+  margin-top: 30px;
+  
+}
+
+.doc {
+  padding-right: 20px;
+  width: 50%;
+}
+
+.content {
+  box-shadow: 0 0 5px 3px #ebebeb;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rightBarContent {
+  box-shadow: 0 0 5px 3px #ebebeb;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  .header {
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      display: flex;
+      align-items: baseline;
+    }
+    .message {
+      margin-left: 28px;
+      margin-right: 28px;
+    }
+    .arrowUp {
+      cursor: pointer;
+      display: flex;
+      justify-content: end;
+    }
+    .arrowDown {
+      cursor: pointer;
+      display: flex;
+    }
+  }
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.doc h1 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.clause {
+  margin-bottom: 20px;
+  padding: 10px;
+  cursor: text;
+}
+
+.clause:focus  {
+  outline: none;
+  border: 1px solid;
+  padding: 9px;
+  border-radius: 5px;
+  border-color: #b190ba;
+  background-color: #F9ECE7;;
+}
+
+.editable:hover {
+    color: black;
+    font-family:Arial, sans-serif;
+    background-color: #F9ECE7;;
+    border-bottom: 2px solid #B190BA;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.clause:hover {
+    visibility: visible;
+
+}
+
+.insight {
+  position: fixed;
+  padding-right: 80px;
+  width: 50%;
+  right: 0px;
+  & h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  & h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .circle {
+    width: 10px;
+    height: 10px;
+  }
+
+  .arrow {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* .insight-box {
+  max-height: 500px;
+  padding: 20px;
+  background-color: #c5a7ce44;
+  border-radius: 10px;
+  overflow-y: auto;
+  position: fixed;
+} */
+
+.insight-box{
+    width: 25%;
+    max-height: 500px;
+    /* top: 15%; */
+    background-color: #c5a7ce44;
+    /* color: black; */
+    border-radius: 10px;
+    padding: 20px;
+    position: fixed;
+    z-index: 1;
+    font-size: 15px;
+    overflow-y:scroll; 
+    /* max-height: 60%; */
+}
+
+.insight-box p {
+  margin-bottom: 10px;
+}
+
+.overview {
+  flex-basis: 100%;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #c5a7ce44;
+  border-radius: 5px;
+  text-align: left;
+  white-space: pre-wrap;
+  
+}
+
+.overview h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #b190ba;
+}
+
+.overview ul {
+  list-style: none;
+}
+
+.overview li {
+  margin:auto;
+}
+
+/* EDDDITS */
+#toolbar {
+  /* display: flex; */
+  align-items: center;
+  background-color: #c5a7ce44;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+#toolbar button {
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.share {
+  width: 134px;
+  height: 54px; 
+  background: #816D8A; 
+  border-radius: 12px; 
+  color: white;
+}
+.share:hover {
+  background:#b190ba;
+}
+.detailBtn {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-image: url("../../../../assets/detail.svg");
+}
+.detailBtn:hover {
+  background-image: url("../../../../assets/detail-hover.svg");
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+hr.solid {
+  border-top:  1px solid rgba(214, 214, 214, 0.39);
+}
+
+.detailModel {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+}
+
+div.detail{
+  position: fixed;
+  width: 330px;
+  top: 90px;
+  right: 40px;
+  overflow: scroll;
+  max-height: 80%;
+  background: white;
+  box-shadow: 0 0 5px 3px #ebebeb;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 20;
+}
+
+.progressBarModel {
+  position: fixed;
+  left: 15%;
+  width: 70%;
+  bottom: 20px;
+  height: 100px;
+  padding-left: 25px;
+  padding-right: 25px;
+  box-shadow: 0 0 5px 3px #ebebeb;
+  background-color: white;
+  border-radius: 99px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .progressBar {
+    border-radius: 20px;
+    background: rgba(206, 206, 206, 0.2);
+    height: 28px;
+    align-self: center;
+    width: -webkit-fill-available;
+    margin-right: 110px;
+    .progress {
+      height: 28px;
+      border-radius: 20px;
+      background: #816D8A;
+      backdrop-filter: blur(12px);
+      width: 0%;
+      padding-top: 30px;
+    }
+  }
+  .finishedBtn {
+    position: absolute;
+    right: 20px;
+    height: 54px; 
+    width: 100px;
+    background: #816D8A; 
+    border-radius: 99px; 
+    color: white;
+  }
+}
+
+.discline {
+  width: 20px;
+  height: 20px;
+}
+
+.accept {
+  width: 20px;
+  height: 20px;
+}
+
+.arrowRight {
+  width: 70%;
+  height: 100%;
+}
+
+#commentHeader {
+  & button {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.12);
+    width: 100%;
+    height: 25px;
+    text-align: justify;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+
+  & textarea {
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 0 5px 3px #ebebeb;
+    border-width: 0px;
+  }
+}
