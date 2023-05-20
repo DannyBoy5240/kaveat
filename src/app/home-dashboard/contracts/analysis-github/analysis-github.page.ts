@@ -11,7 +11,7 @@ import { ContractAnalysisResponse } from 'src/app/shared/models/contract-analysi
 import { Contract } from 'src/app/shared/models/contract.model';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { DiffEditorModel,  MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+// import { DiffEditorModel,  MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 @Component({
   selector: 'app-analysis-github',
   templateUrl: './analysis-github.page.html',
@@ -72,40 +72,40 @@ export class AnalysisGithubPage implements OnInit, OnDestroy {
     }
   }
   
-  originalModel: DiffEditorModel = {
-    code: '',
-    language: 'plaintext'
-  };
+  // originalModel: DiffEditorModel = {
+  //   code: '',
+  //   language: 'plaintext'
+  // };
 
-  modifiedModel: DiffEditorModel = {
-    code: '',
-    language: 'plaintext'
-  };
+  // modifiedModel: DiffEditorModel = {
+  //   code: '',
+  //   language: 'plaintext'
+  // };
 
   async ngOnInit() {
   
 
 
-    this.originalModel = Object.assign({}, this.originalModel, {
-      code: "Lorem ipsum dolor sit amet consectetur. At elementum eget enim natoque ac elit sed ultricies. A etiam risus at nibh eget in eget. Urna lacus sociis nunc aliquet elementum netus cursus mollis. Eget luctus pharetra sollicitudin risus amet. Nisi ornare nibh ut et vitae id ut tempor bibendum. " +
+    // this.originalModel = Object.assign({}, this.originalModel, {
+    //   code: "Lorem ipsum dolor sit amet consectetur. At elementum eget enim natoque ac elit sed ultricies. A etiam risus at nibh eget in eget. Urna lacus sociis nunc aliquet elementum netus cursus mollis. Eget luctus pharetra sollicitudin risus amet. Nisi ornare nibh ut et vitae id ut tempor bibendum. " +
 
-      "Aliquet nullam amet sollicitudin fringilla et. Pharetra cras neque sed sodales egestas elementum enim elit. Vel commodo massa adipiscing ut vel eget donec viverra pellentesque. Porttitor morbi mauris nec ut aliquet."+
+    //   "Aliquet nullam amet sollicitudin fringilla et. Pharetra cras neque sed sodales egestas elementum enim elit. Vel commodo massa adipiscing ut vel eget donec viverra pellentesque. Porttitor morbi mauris nec ut aliquet."+
       
-      "Duis WORD viverra massa mauris. Lobortis arcu viverra varius aliquam luctus lectus eget nunc sed. Viverra dignissim sollicitudin aliquam mauris vehicula id pharetra fames amet. Quis tristique egestas orci vel sed enim enim. Duis etiam porta fusce id euismod. Turpis sit magna mattis auctor. Sit tristique nisl posuere gravida gravida laoreet sed."+
+    //   "Duis WORD viverra massa mauris. Lobortis arcu viverra varius aliquam luctus lectus eget nunc sed. Viverra dignissim sollicitudin aliquam mauris vehicula id pharetra fames amet. Quis tristique egestas orci vel sed enim enim. Duis etiam porta fusce id euismod. Turpis sit magna mattis auctor. Sit tristique nisl posuere gravida gravida laoreet sed."+
       
-      "Ac massa adipiscing pharetra maecenas purus viverra. Neque lacus egestas fames maecenas. Pellentesque eget vestibulum elementum id. Integer eros lacus velit fringilla tincidunt ultricies. Integer urna tortor eu cras turpis. Sit sed ut quam amet eu sed suspendisse a vel. "+
+    //   "Ac massa adipiscing pharetra maecenas purus viverra. Neque lacus egestas fames maecenas. Pellentesque eget vestibulum elementum id. Integer eros lacus velit fringilla tincidunt ultricies. Integer urna tortor eu cras turpis. Sit sed ut quam amet eu sed suspendisse a vel. "+
       
-      "Sit massa amet ullamcorper lacus. Nam lorem volutpat consequat posuere. Condimentum porta a cras in donec accumsan. "
-    });
-    this.modifiedModel = Object.assign({}, this.originalModel, {
-      code: "Lorem ipsum dolor sit amet consectetur. At elementum this part is different eget enim natoque ac elit sed ultricies. A etiam risus at nibh eget in eget. Urna lacus sociis nunc aliquet elementum netus cursus mollis. Eget luctus pharetra sollicitudin risus amet. Nisi ornare nibh ut et vitae id ut tempor bibendum. "+
+    //   "Sit massa amet ullamcorper lacus. Nam lorem volutpat consequat posuere. Condimentum porta a cras in donec accumsan. "
+    // });
+    // this.modifiedModel = Object.assign({}, this.originalModel, {
+    //   code: "Lorem ipsum dolor sit amet consectetur. At elementum this part is different eget enim natoque ac elit sed ultricies. A etiam risus at nibh eget in eget. Urna lacus sociis nunc aliquet elementum netus cursus mollis. Eget luctus pharetra sollicitudin risus amet. Nisi ornare nibh ut et vitae id ut tempor bibendum. "+
 
-      "Aliquet nullam amet sollicitudin fringilla et. Pharetra cras neque sed sodales egestas elementum enim elit. Vel commodo massa adipiscing ut vel eget donec viverra pellentesque. Porttitor morbi mauris nec ut aliquet."+
+    //   "Aliquet nullam amet sollicitudin fringilla et. Pharetra cras neque sed sodales egestas elementum enim elit. Vel commodo massa adipiscing ut vel eget donec viverra pellentesque. Porttitor morbi mauris nec ut aliquet."+
       
-      "Duis CHANGED viverra massa mauris. Lobortis arcu viverra varius aliquam luctus lectus eget nunc sed. Viverra dignissim sollicitudin aliquam mauris vehicula id pharetra fames amet. Quis tristique egestas orci vel sed enim enim. Duis etiam porta fusce id euismod. Turpis sit magna mattis auctor. Sit tristique nisl posuere gravida gravida laoreet sed."+
+    //   "Duis CHANGED viverra massa mauris. Lobortis arcu viverra varius aliquam luctus lectus eget nunc sed. Viverra dignissim sollicitudin aliquam mauris vehicula id pharetra fames amet. Quis tristique egestas orci vel sed enim enim. Duis etiam porta fusce id euismod. Turpis sit magna mattis auctor. Sit tristique nisl posuere gravida gravida laoreet sed."+
       
-      "Ac massa adipiscing pharetra maecenas purus viverra. Neque lacus egestas fames maecenas. Pellentesque eget vestibulum elementum id. Integer eros lacus velit fringilla tincidunt ultricies. Integer urna tortor eu cras turpis. Sit sed ut quam amet eu sed suspendisse a vel. "
-    });
+    //   "Ac massa adipiscing pharetra maecenas purus viverra. Neque lacus egestas fames maecenas. Pellentesque eget vestibulum elementum id. Integer eros lacus velit fringilla tincidunt ultricies. Integer urna tortor eu cras turpis. Sit sed ut quam amet eu sed suspendisse a vel. "
+    // });
 
     const u = await this.userService.getCurrentUser();
     this.currentUser = u;

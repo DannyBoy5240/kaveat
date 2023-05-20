@@ -8,15 +8,15 @@ import { AnalysisGithubPageRoutingModule } from './analysis-github-routing.modul
 
 import { AnalysisGithubPage } from './analysis-github.page';
 
-import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor';
-import  monacoConfig  from './monaco.module';
+// import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor';
+// import  monacoConfig  from './monaco.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     AnalysisGithubPageRoutingModule,
-    MonacoEditorModule.forRoot(),
+    // MonacoEditorModule.forRoot(),
   ],
   exports: [],
   declarations: [AnalysisGithubPage]
